@@ -1,18 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+import { NgModule, ApplicationRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
+import { AgmCoreModule } from '@agm/core';
+import { GeocodeService } from './geocode.service';
+import {} from 'googlemaps';
+import { MapsAPILoader } from "@agm/core";
+
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    CommonModule,
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'API_KEY',
+      libraries: ['geometry']
+    })
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [GeocodeService],
+  declarations: [ AppComponent ],
+  bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {}
